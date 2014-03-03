@@ -1,0 +1,64 @@
+.homepage-control-wrap .wp-list-table {
+  max-width: 500px;
+}
+.homepage-control-wrap .ui-sortable-placeholder {
+  background: #EBEBEB;
+  border: 1px dashed #DDDDDD;
+  visibility: visible !important;
+  margin: 3px;
+}
+.homepage-control-wrap .actions {
+  text-align: right;
+}
+.homepage-control-wrap .handle {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  margin-top: 3px;
+  font-size: 0;
+  cursor: move;
+}
+.homepage-control-wrap .handle:before {
+  -webkit-font-smoothing: antialiased;
+  font: normal 14px/1 'dashicons';
+  content: "\f333";
+  position: relative;
+  cursor: move;
+  padding: 3px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 2px;
+}
+.homepage-control-wrap .visibility {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  margin-top: 3px;
+  font-size: 0;
+}
+.homepage-control-wrap .visibility:before {
+  -webkit-font-smoothing: antialiased;
+  font: normal 14px/1 'dashicons';
+  content: "\f177";
+  position: relative;
+  cursor: move;
+  padding: 3px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 2px;
+}
+.homepage-control-wrap .title {
+  padding-left: 10px;
+}
+.homepage-control-wrap tbody .title {
+  width: 33%;
+  padding-left: 40px;
+}
+.homepage-control-wrap .url {
+  width: 66%;
+}
+.homepage-control-wrap .url input {
+  width: 100%;
+}
