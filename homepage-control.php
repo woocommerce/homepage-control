@@ -87,6 +87,9 @@ final class Homepage_Control {
 
 		register_activation_hook( __FILE__, array( $this, 'install' ) );
 
+		add_filter( 'pre_option_homepage_control', array( $this, 'force_theme_mod_get' ) );
+		add_filter( 'pre_update_option_homepage_control', array( $this, 'force_theme_mod_set' ) );
+
 		/* Conditionally load the admin. */
 		if ( is_admin() ) {
 			require_once( 'classes/class-homepage-control-admin.php' );
@@ -148,5 +151,29 @@ final class Homepage_Control {
 		// Log the version number.
 		update_option( $this->_token . '_version', $this->_version );
 	} // End _log_version_number()
+
+	/**
+	 * Bypass any options checks and use get_theme_mod() instead.
+	 * @access  public
+	 * @since   1.0.0
+	 * @param   boolean $value This value is false by default, on the pre_option_ filters.
+	 * @return  mixed
+	 */
+	public function force_theme_mod_get ( $value ) {
+		return get_theme_mod( 'homepage_control' );
+	} // End force_theme_mod_get()
+
+	/**
+	 * Bypass any options checks and use get_theme_mod() instead.
+	 * @access  public
+	 * @since   1.0.0
+	 * @param   mixed $value
+	 * @param   mixed $old_value
+	 * @return  mixed
+	 */
+	public function force_theme_mod_set ( $value, $old_value ) {
+		set_theme_mod( 'homepage_control', $value );
+		return $old_value; // We return the $old_value so the rest of update_option() doesn't run.
+	} // End force_theme_mod_set()
 } // End Class
 ?>

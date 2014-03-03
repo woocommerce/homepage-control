@@ -24,9 +24,6 @@ class Homepage_Control_Admin {
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
 		// Register necessary scripts and styles, to enable others to enqueue them at will as well.
 		add_action( 'admin_init', array( $this, 'register_enqueues' ) );
-
-		add_filter( 'pre_option_homepage_control', array( $this, 'force_theme_mod_get' ) );
-		add_filter( 'pre_update_option_homepage_control', array( $this, 'force_theme_mod_set' ) );
 	} // End __construct()
 
 	/**
@@ -70,11 +67,23 @@ class Homepage_Control_Admin {
 <?php
 	} // End settings_screen()
 
+	/**
+	 * Register the settings within the Settings API.
+	 * @access  public
+	 * @since   1.0.0
+	 * @return  void
+	 */
 	public function register_settings () {
 		register_setting( 'homepage_control_settings', 'homepage_control', array( $this, 'validate_settings' ) );
 		add_settings_section( 'homepage_components', __( 'Homepage Components', 'homepage-control' ), array( $this, 'render_settings' ), 'homepage_control' );
-	}
+	} // End register_settings()
 
+	/**
+	 * Render the settings.
+	 * @access  public
+	 * @since   1.0.0
+	 * @return  void
+	 */
 	public function render_settings () {
 		$theme = wp_get_theme();
 		$components = $this->_get_hooked_functions();
@@ -88,6 +97,8 @@ class Homepage_Control_Admin {
 		if ( '' == $options ) $options = array( 'component_order' => $default_order, 'disabled_components' => '' );
 
 		$disabled_keys = explode( ',', $options['disabled_components'] );
+
+		$components = $this->_reorder_components( $components, $options['component_order'] );
 ?>
 		<p><?php printf( __( 'Re-order the homepage components in %s.', 'homepage-control' ), $theme->__get( 'Name' ) ); ?></p>
 <?php
@@ -143,30 +154,6 @@ foreach ( $components as $k => $v ) {
 	} // End validate_settings()
 
 	/**
-	 * Bypass any options checks and use get_theme_mod() instead.
-	 * @access  public
-	 * @since   1.0.0
-	 * @param   boolean $value This value is false by default, on the pre_option_ filters.
-	 * @return  mixed
-	 */
-	public function force_theme_mod_get ( $value ) {
-		return get_theme_mod( 'homepage_control' );
-	} // End force_theme_mod_get()
-
-	/**
-	 * Bypass any options checks and use get_theme_mod() instead.
-	 * @access  public
-	 * @since   1.0.0
-	 * @param   mixed $value
-	 * @param   mixed $old_value
-	 * @return  mixed
-	 */
-	public function force_theme_mod_set ( $value, $old_value ) {
-		set_theme_mod( 'homepage_control', $value );
-		return $old_value; // We return the $old_value so the rest of update_option() doesn't run.
-	} // End force_theme_mod_set()
-
-	/**
 	 * Register scripts and styles, preparing for enqueue.
 	 * @access  public
 	 * @since   1.0.0
@@ -196,6 +183,34 @@ foreach ( $components as $k => $v ) {
 	public function enqueue_styles () {
 		wp_enqueue_style( Homepage_Control()->token . '-admin' );
 	} // End enqueue_styles()
+
+	/**
+	 * Re-order the components in the given array, based on the stored order.
+	 * @access  private
+	 * @since   1.0.0
+	 * @return  array An array of components, in the correct order.
+	 */
+	private function _reorder_components ( $components, $order ) {
+		$order_entries = array();
+		if ( '' != $order ) {
+			$order_entries = explode( ',', $order );
+		}
+
+		// Re-order the components according to the stored order.
+		if ( 0 < count( $order_entries ) ) {
+			$original_components = $components; // Make a backup before we overwrite.
+			$components = array();
+			foreach ( $order_entries as $k => $v ) {
+				$components[$v] = $original_components[$v];
+				unset( $original_components[$v] );
+			}
+			if ( 0 < count( $original_components ) ) {
+				$components = array_merge( $components, $original_components );
+			}
+		}
+
+		return $components;
+	} // End _reorder_components()
 
 	/**
 	 * Retrive the functions hooked on to the "woo_homepage" hook.
