@@ -111,8 +111,8 @@ foreach ( $components as $k => $v ) {
 		}
 // TODO
 ?>
-<input type="hidden" name="homepage_control['component_order']" />
-<input type="hidden" name="homepage_control['disabled_components']" />
+<input type="hidden" id="component_order" name="homepage_control['component_order']" />
+<input type="hidden" id="disabled_components" name="homepage_control['disabled_components']" />
 <?php
 	} // End settings_screen()
 
@@ -136,7 +136,6 @@ foreach ( $components as $k => $v ) {
 	 * @return  void
 	 */
 	public function register_enqueues () {
-		wp_register_script( Homepage_Control()->token . '-admin', esc_url( Homepage_Control()->plugin_url . 'assets/js/admin.js' ), array( 'jquery' ), Homepage_Control()->version );
 		wp_register_script( Homepage_Control()->token . '-sortables', esc_url( Homepage_Control()->plugin_url . 'assets/js/sortables.js' ), array( 'jquery', 'jquery-ui-sortable' ), Homepage_Control()->version );
 		wp_register_style( Homepage_Control()->token . '-admin',  esc_url( Homepage_Control()->plugin_url . 'assets/css/settings.css' ), '', Homepage_Control()->version );
 	} // End register_enqueues()
@@ -148,7 +147,6 @@ foreach ( $components as $k => $v ) {
 	 * @return void
 	 */
 	public function enqueue_scripts () {
-		wp_enqueue_script( Homepage_Control()->token . '-admin' );
 		wp_enqueue_script( Homepage_Control()->token . '-sortables' );
 	} // End enqueue_scripts()
 

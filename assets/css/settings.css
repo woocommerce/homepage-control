@@ -10,6 +10,9 @@
 .homepage-control-wrap .actions {
   text-align: right;
 }
+.homepage-control-wrap .disabled {
+  opacity: 0.5;
+}
 .homepage-control-wrap .handle {
   display: inline-block;
   width: 20px;
@@ -48,17 +51,4 @@
   border: 1px solid #ddd;
   background-color: #fff;
   border-radius: 2px;
-}
-.homepage-control-wrap .title {
-  padding-left: 10px;
-}
-.homepage-control-wrap tbody .title {
-  width: 33%;
-  padding-left: 40px;
-}
-.homepage-control-wrap .url {
-  width: 66%;
-}
-.homepage-control-wrap .url input {
-  width: 100%;
 }
