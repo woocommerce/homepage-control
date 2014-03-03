@@ -24,6 +24,9 @@ class Homepage_Control_Admin {
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
 		// Register necessary scripts and styles, to enable others to enqueue them at will as well.
 		add_action( 'admin_init', array( $this, 'register_enqueues' ) );
+
+		add_filter( 'pre_option_homepage_control', array( $this, 'force_theme_mod_get' ) );
+		add_filter( 'pre_update_option_homepage_control', array( $this, 'force_theme_mod_set' ) );
 	} // End __construct()
 
 	/**
@@ -74,8 +77,17 @@ class Homepage_Control_Admin {
 
 	public function render_settings () {
 		$theme = wp_get_theme();
-		$options = get_option( 'homepage_control' );
 		$components = $this->_get_hooked_functions();
+
+		$default_order = array();
+		if ( 0 < count( $components ) ) $default_order = join( ',', array_keys( $components ) );
+
+		$options = get_option( 'homepage_control' );
+
+		// Set defaults. We need to do this separately, instead of on get_option(), as we're actually using get_theme_mod() instead.
+		if ( '' == $options ) $options = array( 'component_order' => $default_order, 'disabled_components' => '' );
+
+		$disabled_keys = explode( ',', $options['disabled_components'] );
 ?>
 		<p><?php printf( __( 'Re-order the homepage components in %s.', 'homepage-control' ), $theme->__get( 'Name' ) ); ?></p>
 <?php
@@ -89,6 +101,8 @@ foreach ( $components as $k => $v ) {
 	$count++;
 	$class = 'odd alternate';
 	if ( 0 == $count % 2 ) $class = 'even';
+
+	if ( in_array( $k, $disabled_keys ) ) $class .= ' disabled';
 ?>
 			<tr valign="top" id="<?php echo esc_attr( $k ); ?>" class="item-row <?php echo esc_attr( $k ) . ' ' . $class; ?>">
 				<td>
@@ -109,10 +123,9 @@ foreach ( $components as $k => $v ) {
 		} else {
 			echo '<div class="message"><p>' . __( 'Your theme doesn\'t include any homepage components which are suitable for re-ordering or disabling.', 'homepage-control' ) . '</p></div>' . "\n";
 		}
-// TODO
 ?>
-<input type="hidden" id="component_order" name="homepage_control['component_order']" />
-<input type="hidden" id="disabled_components" name="homepage_control['disabled_components']" />
+<input type="hidden" id="component_order" name="homepage_control[component_order]" value="<?php echo esc_attr( $options['component_order'] ); ?>" />
+<input type="hidden" id="disabled_components" name="homepage_control[disabled_components]" value="<?php echo esc_attr( $options['disabled_components'] ); ?>" />
 <?php
 	} // End settings_screen()
 
@@ -128,6 +141,30 @@ foreach ( $components as $k => $v ) {
 		$input['disabled_components'] = esc_html( $input['disabled_components'] );
 		return $input;
 	} // End validate_settings()
+
+	/**
+	 * Bypass any options checks and use get_theme_mod() instead.
+	 * @access  public
+	 * @since   1.0.0
+	 * @param   boolean $value This value is false by default, on the pre_option_ filters.
+	 * @return  mixed
+	 */
+	public function force_theme_mod_get ( $value ) {
+		return get_theme_mod( 'homepage_control' );
+	} // End force_theme_mod_get()
+
+	/**
+	 * Bypass any options checks and use get_theme_mod() instead.
+	 * @access  public
+	 * @since   1.0.0
+	 * @param   mixed $value
+	 * @param   mixed $old_value
+	 * @return  mixed
+	 */
+	public function force_theme_mod_set ( $value, $old_value ) {
+		set_theme_mod( 'homepage_control', $value );
+		return $old_value; // We return the $old_value so the rest of update_option() doesn't run.
+	} // End force_theme_mod_set()
 
 	/**
 	 * Register scripts and styles, preparing for enqueue.
