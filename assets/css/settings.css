@@ -40,6 +40,7 @@
   position: relative;
   margin-top: 3px;
   font-size: 0;
+  cursor: pointer;
 }
 .homepage-control-wrap .visibility:before {
   -webkit-font-smoothing: antialiased;
