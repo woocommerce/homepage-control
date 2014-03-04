@@ -89,8 +89,8 @@ final class Homepage_Control {
 
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 
-		add_filter( 'pre_option_homepage_control', array( $this, 'force_theme_mod_get' ) );
-		add_filter( 'pre_update_option_homepage_control', array( $this, 'force_theme_mod_set' ) );
+		add_filter( 'pre_option_homepage_control', array( $this, 'force_theme_mod_get' ), 10 );
+		add_filter( 'pre_update_option_homepage_control', array( $this, 'force_theme_mod_set' ), 10, 2 );
 
 		/* Conditionally load the admin. */
 		if ( is_admin() ) {
