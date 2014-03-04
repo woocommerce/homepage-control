@@ -4,8 +4,8 @@
  * Plugin URI: http://www.woothemes.com/products/homepage-control/
  * Description: Hi! I'm here to assist you with re-ordering or disabling components of your theme's homepage design.
  * Version: 1.0.0
- * Author: Matty Cohen
- * Author URI: http://matty.co.za/
+ * Author: WooThemes
+ * Author URI: http://woothemes.com/
  * Requires at least: 3.8.1
  * Tested up to: 3.8.1
  *
