@@ -160,8 +160,8 @@ foreach ( $components as $k => $v ) {
 	 * @return  array        Validated data.
 	 */
 	public function validate_settings ( $input ) {
-		$input['component_order'] = esc_html( $input['component_order'] );
-		$input['disabled_components'] = esc_html( $input['disabled_components'] );
+		if ( isset( $input['component_order'] ) ) $input['component_order'] = esc_html( $input['component_order'] );
+		if ( isset( $input['disabled_components'] ) ) $input['disabled_components'] = esc_html( $input['disabled_components'] );
 		return $input;
 	} // End validate_settings()
 
