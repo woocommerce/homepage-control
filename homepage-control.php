@@ -74,6 +74,14 @@ final class Homepage_Control {
 	public $admin;
 
 	/**
+	 * The name of the hook on which we will be working our magic.
+	 * @var     string
+	 * @access  public
+	 * @since   1.0.0
+	 */
+	public $hook;
+
+	/**
 	 * Constructor function.
 	 * @access  public
 	 * @since   1.0.0
@@ -84,6 +92,7 @@ final class Homepage_Control {
 		$this->plugin_url 		= plugin_dir_url( __FILE__ );
 		$this->plugin_path 		= plugin_dir_path( __FILE__ );
 		$this->version 			= '1.0.0';
+		$this->hook 			= (string)apply_filters( 'homepage_control_hook', 'homepage' );
 
 		register_activation_hook( __FILE__, array( $this, 'install' ) );
 
@@ -217,10 +226,10 @@ final class Homepage_Control {
 			// Perform the reordering!
 			if ( 0 < count( $components ) ) {
 				// Remove all existing actions on woo_homepage.
-				remove_all_actions( 'woo_homepage' );
+				remove_all_actions( $this->hook );
 				$count = 5;
 				foreach ( $components as $k => $v ) {
-					add_action( 'woo_homepage', esc_attr( $v ), $count );
+					add_action( $this->hook, esc_attr( $v ), $count );
 					$count + 5;
 				}
 			}

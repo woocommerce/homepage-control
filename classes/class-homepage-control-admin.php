@@ -235,8 +235,8 @@ foreach ( $components as $k => $v ) {
 
 		$response = array();
 
-		if ( isset( $wp_filter['woo_homepage'] ) && 0 < count( $wp_filter['woo_homepage'] ) ) {
-			foreach ( $wp_filter['woo_homepage'] as $k => $v ) {
+		if ( isset( $wp_filter[Homepage_Control()->hook] ) && 0 < count( $wp_filter[Homepage_Control()->hook] ) ) {
+			foreach ( $wp_filter[Homepage_Control()->hook] as $k => $v ) {
 				if ( is_array( $v ) ) {
 					foreach ( $v as $i => $j ) {
 						$response[$i] = array( 'title' => $this->_maybe_format_title( $i ), 'priority' => $k );
@@ -255,7 +255,7 @@ foreach ( $components as $k => $v ) {
 	 * @return  string A formatted title. If no formatting is possible, return the key.
 	 */
 	private function _maybe_format_title ( $key ) {
-		$prefix = 'woo_display_';
+		$prefix = (string)apply_filters( 'hompage_control_prefix', 'woo_display_' );
 		$title = $key;
 
 		$title = str_replace( $prefix, '', $title );
