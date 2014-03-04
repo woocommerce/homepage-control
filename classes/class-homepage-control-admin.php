@@ -24,6 +24,8 @@ class Homepage_Control_Admin {
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
 		// Register necessary scripts and styles, to enable others to enqueue them at will as well.
 		add_action( 'admin_init', array( $this, 'register_enqueues' ) );
+
+		add_action( 'admin_notices', array( $this, 'settings_notices' ) );
 	} // End __construct()
 
 	/**
@@ -139,6 +141,16 @@ foreach ( $components as $k => $v ) {
 <input type="hidden" id="disabled_components" name="homepage_control[disabled_components]" value="<?php echo esc_attr( $options['disabled_components'] ); ?>" />
 <?php
 	} // End settings_screen()
+
+	/**
+	 * Display settings notices within the admin.
+	 * @access  public
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	public function settings_notices () {
+	     settings_errors();
+	} // End settings_notices()
 
 	/**
 	 * Validate the settings.
