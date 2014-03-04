@@ -94,6 +94,8 @@ final class Homepage_Control {
 		if ( is_admin() ) {
 			require_once( 'classes/class-homepage-control-admin.php' );
 			$this->admin = new Homepage_Control_Admin();
+		} else {
+			add_action( 'get_header', array( $this, 'maybe_apply_restructuring_filter' ) );
 		}
 	} // End __construct()
 
@@ -175,5 +177,67 @@ final class Homepage_Control {
 		set_theme_mod( 'homepage_control', $value );
 		return $old_value; // We return the $old_value so the rest of update_option() doesn't run.
 	} // End force_theme_mod_set()
+
+	/**
+	 * Work through the stored data and display the components in the desired order, without the disabled components.
+	 * @access  public
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	public function maybe_apply_restructuring_filter () {
+		$options = (array)get_theme_mod( 'homepage_control' );
+		$order = '';
+		$disabled = '';
+		$components = array();
+
+		if ( isset( $options['component_order'] ) ) {
+			$order = $options['component_order'];
+
+			if ( isset( $options['disabled_components'] ) ) {
+				$disabled = $options['disabled_components'];
+			}
+
+			// Attempt to remove disabled components.
+			if ( '' != $order ) {
+				$components = $this->_maybe_remove_disabled_items( $order, $disabled );
+			}
+
+			// Perform the reordering!
+			if ( 0 < count( $components ) ) {
+				// Remove all existing actions on woo_homepage.
+				remove_all_actions( 'woo_homepage' );
+				$count = 5;
+				foreach ( $components as $k => $v ) {
+					add_action( 'woo_homepage', esc_attr( $v ), $count );
+					$count + 5;
+				}
+			}
+		}
+	} // End maybe_apply_restructuring_filter()
+
+	/**
+	 * Maybe remove disabled items from the main ordered array.
+	 * @access  private
+	 * @since   1.0.0
+	 * @param   string $order    Stored comma separated data for the components order.
+	 * @param   string $disabled Stored comma separated data for the disabled components.
+	 * @return  array            Re-ordered components with disabled components removed.
+	 */
+	private function _maybe_remove_disabled_items ( $order, $disabled ) {
+		// Transform into arrays.
+		$order = explode( ',', $order );
+		$disabled = explode( ',', $disabled );
+
+		// Remove disabled items from the ordered array.
+		if ( 0 < count( $order ) && 0 < count( $disabled ) ) {
+			foreach ( $order as $k => $v ) {
+				if ( in_array( $v, $disabled ) ) {
+					unset( $order[$k] );
+				}
+			}
+		}
+
+		return $order;
+	} // End _maybe_remove_disabled_items()
 } // End Class
 ?>
