@@ -87,6 +87,8 @@ final class Homepage_Control {
 
 		register_activation_hook( __FILE__, array( $this, 'install' ) );
 
+		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+
 		add_filter( 'pre_option_homepage_control', array( $this, 'force_theme_mod_get' ) );
 		add_filter( 'pre_update_option_homepage_control', array( $this, 'force_theme_mod_set' ) );
 
@@ -114,6 +116,16 @@ final class Homepage_Control {
 			self::$_instance = new self();
 		return self::$_instance;
 	} // End instance()
+
+	/**
+	 * Load the localisation file.
+	 * @access  public
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	public function load_plugin_textdomain() {
+		load_plugin_textdomain( 'homepage_control', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+	} // End load_plugin_textdomain()
 
 	/**
 	 * Cloning is forbidden.
