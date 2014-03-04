@@ -91,7 +91,11 @@ class Homepage_Control_Admin {
 		$components = $this->_get_hooked_functions();
 
 		$default_order = array();
-		if ( 0 < count( $components ) ) $default_order = join( ',', array_keys( $components ) );
+		if ( 0 < count( $components ) ) {
+			$default_order = join( ',', array_keys( $components ) );
+		} else {
+			$default_order = '';
+		}
 
 		$options = get_option( 'homepage_control' );
 
