@@ -223,10 +223,11 @@ final class Homepage_Control {
 				$components = $this->_maybe_remove_disabled_items( $order, $disabled );
 			}
 
+			// Remove all existing actions on woo_homepage.
+			remove_all_actions( $this->hook );
+
 			// Perform the reordering!
 			if ( 0 < count( $components ) ) {
-				// Remove all existing actions on woo_homepage.
-				remove_all_actions( $this->hook );
 				$count = 5;
 				foreach ( $components as $k => $v ) {
 					add_action( $this->hook, esc_attr( $v ), $count );
