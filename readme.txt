@@ -1,4 +1,4 @@
-=== Subscribe & Connect ===
+=== Homepage Control ===
 Contributors: woothemes,mattyza
 Donate link: http://woothemes.com/
 Tags: homepage, hooks, theme-mod, components
