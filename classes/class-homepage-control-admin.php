@@ -111,6 +111,9 @@ class Homepage_Control_Admin {
 		if ( 0 < count( $components ) ) {
 ?>
 		<table class="wp-list-table widefat fixed">
+			<thead>
+				<th colspan="2"><?php _e( 'Component', 'homepage-control' ); ?></th>
+			</thead>
 			<tbody>
 <?php
 $count = 0;
@@ -122,19 +125,12 @@ foreach ( $components as $k => $v ) {
 	if ( in_array( $k, $disabled_keys ) ) $class .= ' disabled';
 ?>
 			<tr valign="top" id="<?php echo esc_attr( $k ); ?>" class="item-row <?php echo esc_attr( $k ) . ' ' . $class; ?>">
-				<td>
-					<?php echo esc_html( $v['title'] ); ?>
-				</td>
-				<td class="actions"><span class="handle"></span><span class="visibility"></span></td>
+				<td colspan="2"><span class="visibility"></span> <?php echo esc_html( $v['title'] ); ?></td>
 			</tr>
 <?php
 }
 ?>
 			</tbody>
-			<thead>
-				<th><?php _e( 'Component', 'homepage-control' ); ?></th>
-				<th>&nbsp;</th>
-			</thead>
 		</table>
 <?php
 		} else {
