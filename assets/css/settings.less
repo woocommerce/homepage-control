@@ -1,8 +1,4 @@
 .homepage-control-wrap {
-	.wp-list-table {
-		max-width: 500px;
-	}
-
 	.ui-sortable-placeholder {
 		background: #EBEBEB;
 		border: 1px dashed #DDDDDD;
@@ -10,53 +6,53 @@
 		margin: 3px;
 	}
 
-	.actions {
-		text-align: right;
+	.wp-list-table {
+		.item-row {
+			&:hover {
+				cursor: move;
+			}
+		}
+	}
+
+	td {
+		vertical-align: middle;
+		overflow: hidden;
+		zoom: 1;
+		line-height: 16px;
 	}
 
 	.disabled {
-		opacity: 0.5;
-	}
-
-	.handle {
-		display: inline-block;
-		width: 20px;
-		height: 20px;
-		position: relative;
-		margin-top: 3px;
-		font-size: 0;
-		cursor: move;
-		&:before {
-			-webkit-font-smoothing: antialiased;
-			font: normal 14px/1 'dashicons';
-			content: "\f333";
-			position: relative;
-			cursor: move;
-			padding: 3px;
-			border: 1px solid #ddd;
-			background-color: #fff;
-			border-radius: 2px;
+		.visibility {
+			&:before {
+				content: "";
+			}
 		}
 	}
 
 	.visibility {
 		display: inline-block;
-		width: 20px;
-		height: 20px;
+		width: 16px;
+		height: 16px;
 		position: relative;
-		margin-top: 3px;
 		font-size: 0;
 		cursor: pointer;
+		border: 1px solid #ddd;
+		background-color: #fff;
+		float: left;
+		margin-right: 9px;
+		border-radius: 2px;
+
 		&:before {
 			-webkit-font-smoothing: antialiased;
 			font: normal 14px/1 'dashicons';
-			content: "\f177";
-			position: relative;
-			cursor: move;
-			padding: 3px;
-			border: 1px solid #ddd;
-			background-color: #fff;
-			border-radius: 2px;
+			content: "\f147";
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			line-height: 16px;
+			text-align: center;
 		}
 	}
 }
