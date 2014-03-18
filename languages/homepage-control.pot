@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Homepage Control 1.0.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/homepage-control\n"
-"POT-Creation-Date: 2014-03-04 06:40:51+00:00\n"
+"POT-Creation-Date: 2014-03-18 11:52:28+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,19 +25,19 @@ msgstr ""
 msgid "Homepage Components"
 msgstr ""
 
-#: classes/class-homepage-control-admin.php:105
+#: classes/class-homepage-control-admin.php:109
 msgid "Re-order the homepage components in %s."
 msgstr ""
 
-#: classes/class-homepage-control-admin.php:131
+#: classes/class-homepage-control-admin.php:115
 msgid "Component"
 msgstr ""
 
 #: classes/class-homepage-control-admin.php:137
-msgid "Your theme doesn't include any homepage components which are suitable for re-ordering or disabling."
+msgid "Your theme doesn't include any homepage components which are suitable for re-ordering or disabling. %sView documentation%s on what makes a theme compatible."
 msgstr ""
 
-#: homepage-control.php:136 homepage-control.php:145
+#: homepage-control.php:145 homepage-control.php:154
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 #. Plugin Name of the plugin/theme
