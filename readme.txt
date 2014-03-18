@@ -1,5 +1,5 @@
 === Homepage Control ===
-Contributors: woothemes,mattyza
+Contributors: woothemes,mattyza,jameskoster
 Donate link: http://woothemes.com/
 Tags: homepage, hooks, theme-mod, components
 Requires at least: 3.8.1
