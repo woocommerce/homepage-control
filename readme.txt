@@ -14,6 +14,8 @@ Re-order or disable the homepage components in certain themes.
 
 Using Homepage Control, any theme which uses a "homepage" (or other) hook to display components on a homepage, just got better. Re-order or disable any of the homepage components added by your theme, and control the display and order of any function hooked on to the "homepage" hook.
 
+Looking for a helping hand? [View plugin documentation](http://docs.woothemes.com/document/homepage-control/).
+
 == Usage ==
 
 Once activated, a "Homepage" menu item will display underneath the WooThemes administration menu. If you're not using a WooThemes theme, this menu will display under the "Appearance" menu item.
@@ -55,11 +57,11 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 == Upgrade Notice ==
 
 = 1.0.0 =
-* 2014-03-10
+* 2014-03-18
 * Initial release. Woo!
 
 == Changelog ==
 
 = 1.0.0 =
-* 2014-03-10
+* 2014-03-18
 * Initial release. Woo!
