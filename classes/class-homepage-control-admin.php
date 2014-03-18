@@ -134,7 +134,7 @@ foreach ( $components as $k => $v ) {
 		</table>
 <?php
 		} else {
-			echo '<div class="message"><p>' . __( 'Your theme doesn\'t include any homepage components which are suitable for re-ordering or disabling.', 'homepage-control' ) . '</p></div>' . "\n";
+			echo '<div class="message"><p>' . sprintf( __( 'Your theme doesn\'t include any homepage components which are suitable for re-ordering or disabling. %sView documentation%s on what makes a theme compatible.', 'homepage-control' ), '<a href="' . esc_url( 'http://docs.woothemes.com/document/homepage-control/' ) . '" target="_blank">', '</a>' ) . '</p></div>' . "\n";
 		}
 ?>
 <input type="hidden" id="component_order" name="homepage_control[component_order]" value="<?php echo esc_attr( $options['component_order'] ); ?>" />
