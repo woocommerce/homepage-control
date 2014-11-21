@@ -239,7 +239,13 @@ foreach ( $components as $k => $v ) {
 			foreach ( $wp_filter[Homepage_Control()->hook] as $k => $v ) {
 				if ( is_array( $v ) ) {
 					foreach ( $v as $i => $j ) {
-						$response[$i] = array( 'title' => $this->_maybe_format_title( $i ), 'priority' => $k );
+
+						if ( is_array( $j['function'] ) ) {
+							$i = get_class( $j['function'][0] ) . '@' . $j['function'][1];
+							$response[$i] = array( 'title' => $this->_maybe_format_title( $j['function'][1] ), 'priority' => $k, 'class' => get_class( $j['function'][0] ) );
+						} else {
+							$response[$i] = array( 'title' => $this->_maybe_format_title( $i ), 'priority' => $k );
+						}
 					}
 				}
 			}
