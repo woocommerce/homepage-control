@@ -4,7 +4,7 @@ Donate link: http://woothemes.com/
 Tags: homepage, hooks, theme-mod, components
 Requires at least: 3.8.1
 Tested up to: 3.8.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -61,6 +61,10 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 * Initial release. Woo!
 
 == Changelog ==
+
+= 1.0.1 =
+* 2014-11-21
+* Improved handling of functions hooked in via classes.
 
 = 1.0.0 =
 * 2014-03-18
