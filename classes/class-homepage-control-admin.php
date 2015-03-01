@@ -261,7 +261,7 @@ foreach ( $components as $k => $v ) {
 	 * @return  string A formatted title. If no formatting is possible, return the key.
 	 */
 	private function _maybe_format_title ( $key ) {
-		$prefix = (string)apply_filters( 'hompage_control_prefix', 'woo_display_' );
+		$prefix = (array) apply_filters( 'hompage_control_prefix', array( 'woo_display_' ) );
 		$title = $key;
 
 		$title = str_replace( $prefix, '', $title );
