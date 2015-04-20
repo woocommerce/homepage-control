@@ -91,20 +91,18 @@ class Homepage_Control_Customizer_Control extends WP_Customize_Control {
 	 * @return  array An array of disabled components.
 	 */
 	private function _get_disabled_components ( $components ) {
-		$disabled_entries = array();
 		$disabled = array();
 		if ( '' != $components ) {
-			$disabled = explode( ',', $components );
-		}
+			$components = explode( ',', $components );
 
-		if ( 0 < count( $disabled ) ) {
-			foreach ( $disabled as $k => $v ) {
-				if ( false !== strpos( $v, '[disabled]' ) ) {
-					$disabled_entries[] = str_replace( '[disabled]', '', $v );
+			if ( 0 < count( $components ) ) {
+				foreach ( $components as $k => $v ) {
+					if ( false !== strpos( $v, '[disabled]' ) ) {
+						$disabled[] = str_replace( '[disabled]', '', $v );
+					}
 				}
 			}
 		}
-
-		return $disabled_entries;
+		return $disabled;
 	}
 }
