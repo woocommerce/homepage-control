@@ -98,11 +98,11 @@ final class Homepage_Control {
 
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 
-		/* Conditionally load the admin. */
-		if ( is_admin() ) {
-			require_once( 'classes/class-homepage-control-admin.php' );
-			$this->admin = new Homepage_Control_Admin();
-		} else {
+		/* Setup Customizer. */
+		require_once( 'classes/class-homepage-control-customizer.php' );
+
+		/* Reorder Components. */
+		if ( ! is_admin() ) {
 			add_action( 'get_header', array( $this, 'maybe_apply_restructuring_filter' ) );
 		}
 	} // End __construct()
