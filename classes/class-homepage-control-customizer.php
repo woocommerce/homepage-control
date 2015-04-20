@@ -27,7 +27,7 @@ class Homepage_Control_Customizer {
 			'priority'       => 70,
 		) );
 
-		$wp_customize->add_setting( Homepage_Control()->token, array(
+		$wp_customize->add_setting( 'homepage_control', array(
 			'default' 		=> $this->_format_defaults(), // get default order
 			'type' 			=> 'theme_mod',
 			'capability' 	=> 'edit_theme_options',
@@ -40,7 +40,7 @@ class Homepage_Control_Customizer {
 		$wp_customize->add_control( new Homepage_Control_Customizer_Control( $wp_customize, 'homepage_control', array(
 			'description'       => sprintf( __( 'Re-order the homepage components in %s.', 'homepage-control' ), $theme->__get( 'Name' ) ),
 			'section'           => 'homepage_control',
-			'settings'          => Homepage_Control()->token,
+			'settings'          => 'homepage_control',
 			'choices'           => $this->_get_hooked_functions(),
 			'priority'          => 10,
 			'type'				=> 'hidden'

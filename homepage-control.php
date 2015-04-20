@@ -179,25 +179,17 @@ final class Homepage_Control {
 	 * @return  void
 	 */
 	public function maybe_apply_restructuring_filter () {
-		$options = (array)get_theme_mod( 'homepage_control' );
-		$order = '';
-		$disabled = '';
+		$options = get_theme_mod( 'homepage_control' );
 		$components = array();
 
-		if ( isset( $options['component_order'] ) ) {
-			$order = $options['component_order'];
-
-			if ( isset( $options['disabled_components'] ) ) {
-				$disabled = $options['disabled_components'];
-			}
-
-			// Attempt to remove disabled components.
-			if ( '' != $order ) {
-				$components = $this->_maybe_remove_disabled_items( $order, $disabled );
-			}
+		if ( isset( $options ) ) {
+			$components = explode( ',', $options );
 
 			// Remove all existing actions on woo_homepage.
 			remove_all_actions( $this->hook );
+
+			// Remove disabled components
+			$components = $this->_maybe_remove_disabled_items( $components );
 
 			// Perform the reordering!
 			if ( 0 < count( $components ) ) {
@@ -222,25 +214,18 @@ final class Homepage_Control {
 	 * Maybe remove disabled items from the main ordered array.
 	 * @access  private
 	 * @since   1.0.0
-	 * @param   string $order    Stored comma separated data for the components order.
-	 * @param   string $disabled Stored comma separated data for the disabled components.
-	 * @return  array            Re-ordered components with disabled components removed.
+	 * @param   array $components 	Array with components order.
+	 * @return  array           	Re-ordered components with disabled components removed.
 	 */
-	private function _maybe_remove_disabled_items ( $order, $disabled ) {
-		// Transform into arrays.
-		$order = explode( ',', $order );
-		$disabled = explode( ',', $disabled );
-
-		// Remove disabled items from the ordered array.
-		if ( 0 < count( $order ) && 0 < count( $disabled ) ) {
-			foreach ( $order as $k => $v ) {
-				if ( in_array( $v, $disabled ) ) {
-					unset( $order[$k] );
+	private function _maybe_remove_disabled_items( $components ) {
+		if ( 0 < count( $components ) ) {
+			foreach ( $components as $k => $v ) {
+				if ( false !== strpos( $v, '[disabled]' ) ) {
+					unset( $components[ $k ] );
 				}
 			}
 		}
-
-		return $order;
+		return $components;
 	} // End _maybe_remove_disabled_items()
 } // End Class
 ?>
