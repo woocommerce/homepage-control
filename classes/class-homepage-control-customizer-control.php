@@ -23,8 +23,9 @@ class Homepage_Control_Customizer_Control extends WP_Customize_Control {
 		if ( ! is_array( $this->choices ) || ! count( $this->choices ) ) {
 			return;
 		}
-		$components = $this->choices;
-		$order      = $this->value();
+		$components         = $this->choices;
+		$order              = $this->value();
+		$disabled			= $this->_get_disabled_components( $this->value() );
 		?>
 		<label>
 			<?php
@@ -40,11 +41,11 @@ class Homepage_Control_Customizer_Control extends WP_Customize_Control {
 				<?php foreach ( $components as $k => $v ) : ?>
 					<?php
 						$class = '';
-						if ( false == $v['status'] ) {
+						if ( in_array( $k, $disabled ) ) {
 							$class = 'disabled';
 						}
 					?>
-					<li id="<?php echo esc_attr( $k ); ?>" class="<?php echo $class; ?>"><span class="visibility"></span><?php echo esc_attr( $v['nice_name'] ); ?></li>
+					<li id="<?php echo esc_attr( $k ); ?>" class="<?php echo $class; ?>"><span class="visibility"></span><?php echo esc_attr( $v ); ?></li>
 				<?php endforeach; ?>
 			</ul>
 			<input type="hidden" <?php $this->link(); ?> value="<?php echo esc_attr( $this->value() ); ?>"/>
@@ -55,7 +56,7 @@ class Homepage_Control_Customizer_Control extends WP_Customize_Control {
 	/**
 	 * Re-order the components in the given array, based on the stored order.
 	 * @access  private
-	 * @since   2.0.0
+	 * @since   1.0.0
 	 * @return  array An array of components, in the correct order.
 	 */
 	private function _reorder_components ( $components, $order ) {
@@ -71,30 +72,39 @@ class Homepage_Control_Customizer_Control extends WP_Customize_Control {
 			foreach ( $order_entries as $k => $v ) {
 				if ( false !== strpos( $v, '[disabled]' ) ) {
 					$v = str_replace( '[disabled]', '', $v );
-					$components[ $v ] = array(
-						'nice_name' => $original_components[ $v ],
-						'status'	=> false,
-					);
-				} else {
-					$components[ $v ] = array(
-						'nice_name' => $original_components[ $v ],
-						'status'	=> true,
-					);
 				}
+				$components[ $v ] = $original_components[ $v ];
 				unset( $original_components[ $v ] );
 			}
-
-			// Loop through any components left in the original order
 			if ( 0 < count( $original_components ) ) {
-				foreach ( $original_components as $k => $v ) {
-					$components[ $k ] = array(
-						'nice_name' => $v,
-						'status'	=> true,
-					);
-				}
+				$components = array_merge( $components, $original_components );
 			}
 		}
 
 		return $components;
 	} // End _reorder_components()
+
+	/**
+	 * Return the disabled components in the given array, based on the format of the key.
+	 * @access  private
+	 * @since   2.0.0
+	 * @return  array An array of disabled components.
+	 */
+	private function _get_disabled_components ( $components ) {
+		$disabled_entries = array();
+		$disabled = array();
+		if ( '' != $components ) {
+			$disabled = explode( ',', $components );
+		}
+
+		if ( 0 < count( $disabled ) ) {
+			foreach ( $disabled as $k => $v ) {
+				if ( false !== strpos( $v, '[disabled]' ) ) {
+					$disabled_entries[] = str_replace( '[disabled]', '', $v );
+				}
+			}
+		}
+
+		return $disabled_entries;
+	}
 }

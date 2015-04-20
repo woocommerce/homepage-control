@@ -226,7 +226,7 @@ final class Homepage_Control {
 		$options = get_theme_mod( 'homepage_control' );
 		$components = array();
 
-		if ( isset( $options ) ) {
+		if ( isset( $options ) && '' != $options ) {
 			$components = explode( ',', $options );
 
 			// Remove all existing actions on woo_homepage.
