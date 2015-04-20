@@ -98,6 +98,8 @@ final class Homepage_Control {
 
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 
+		add_action( 'plugins_loaded', array( $this, 'maybe_migrate_data' ) );
+
 		/* Setup Customizer. */
 		require_once( 'classes/class-homepage-control-customizer.php' );
 
@@ -171,6 +173,48 @@ final class Homepage_Control {
 		// Log the version number.
 		update_option( $this->_token . '_version', $this->_version );
 	} // End _log_version_number()
+
+
+	/**
+	 * Migrate data from versions prior to 2.0.0.
+	 * @access  public
+	 * @since   2.0.0
+	 * @return  void
+	 */
+	public function maybe_migrate_data () {
+		if ( ! get_theme_mod( 'homepage_control_migrated' ) ) {
+			$options = (array)get_theme_mod( 'homepage_control' );
+			$order = '';
+			$disabled = '';
+			$components = array();
+
+			if ( isset( $options['component_order'] ) ) {
+				$order = explode( ',', $options['component_order'] );
+
+				if ( isset( $options['disabled_components'] ) ) {
+					$disabled = explode( ',', $options['disabled_components'] );
+				}
+
+				if ( 0 < count( $order ) ) {
+					foreach ( $order as $k => $v ) {
+						if ( in_array( $v, $disabled ) ) {
+							$components[] = '[disabled]' . $v; // Add disabled tag
+						} else {
+							$components[] = $v;
+						}
+					}
+				}
+			}
+
+			$components = join( ',', $components );
+
+			// Replace old data
+			set_theme_mod( 'homepage_control', $components );
+
+			// Setup a flag
+			set_theme_mod( 'homepage_control_migrated', true );
+		}
+	} // End maybe_migrate_data()
 
 	/**
 	 * Work through the stored data and display the components in the desired order, without the disabled components.
