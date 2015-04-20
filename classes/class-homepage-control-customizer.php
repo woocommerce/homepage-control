@@ -43,7 +43,8 @@ class Homepage_Control_Customizer {
 			'settings'          => 'homepage_control',
 			'choices'           => $this->_get_hooked_functions(),
 			'priority'          => 10,
-			'type'				=> 'hidden'
+			'type'				=> 'hidden',
+			'sanitize_callback'	=> array( $this, '_canvas_sanitize_components' ),
 		) ) );
 	}
 
@@ -65,6 +66,23 @@ class Homepage_Control_Customizer {
 	 */
 	public function enqueue_styles() {
 		wp_enqueue_style( Homepage_Control()->token . '-customizer',  esc_url( Homepage_Control()->plugin_url . 'assets/css/settings.css' ), '', Homepage_Control()->version );
+	}
+
+	/**
+	 * Ensures only array keys matching the original settings specified in add_control() are valid.
+	 * @access  public
+	 * @since   2.0.0
+	 * @return  string The valid component.
+	*/
+	public function _canvas_sanitize_components( $input ) {
+		$valid = $this->_get_hooked_functions();
+
+		if ( array_key_exists( $input, $valid ) || array_key_exists( str_replace( '[disabled]', '', $input ), $valid ) ) {
+			print_r( $input );
+			return $input;
+		} else {
+			return '';
+		}
 	}
 
 	/**
