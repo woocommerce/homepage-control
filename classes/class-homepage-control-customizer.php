@@ -78,7 +78,6 @@ class Homepage_Control_Customizer {
 		$valid = $this->_get_hooked_functions();
 
 		if ( array_key_exists( $input, $valid ) || array_key_exists( str_replace( '[disabled]', '', $input ), $valid ) ) {
-			print_r( $input );
 			return $input;
 		} else {
 			return '';
@@ -100,7 +99,6 @@ class Homepage_Control_Customizer {
 			foreach ( $wp_filter[Homepage_Control()->hook] as $k => $v ) {
 				if ( is_array( $v ) ) {
 					foreach ( $v as $i => $j ) {
-
 						if ( is_array( $j['function'] ) ) {
 							$i = get_class( $j['function'][0] ) . '@' . $j['function'][1];
 							$response[$i] = $this->_maybe_format_title( $j['function'][1] );

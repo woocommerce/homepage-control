@@ -70,7 +70,7 @@ class Homepage_Control_Customizer_Control extends WP_Customize_Control {
 			$original_components = $components; // Make a backup before we overwrite.
 			$components = array();
 			foreach ( $order_entries as $k => $v ) {
-				if ( false !== strpos( $v, '[disabled]' ) ) {
+				if ( $this->_is_component_disabled( $v ) ) {
 					$v = str_replace( '[disabled]', '', $v );
 				}
 				$components[ $v ] = $original_components[ $v ];
@@ -85,6 +85,19 @@ class Homepage_Control_Customizer_Control extends WP_Customize_Control {
 	} // End _reorder_components()
 
 	/**
+	 * Check if a component is disabled.
+	 * @access  private
+	 * @since   2.0.0
+	 * @return  boolean True if a component if disabled.
+	 */
+	private function _is_component_disabled ( $component ) {
+		if ( false !== strpos( $component, '[disabled]' ) ) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
 	 * Return the disabled components in the given array, based on the format of the key.
 	 * @access  private
 	 * @since   2.0.0
@@ -97,7 +110,7 @@ class Homepage_Control_Customizer_Control extends WP_Customize_Control {
 
 			if ( 0 < count( $components ) ) {
 				foreach ( $components as $k => $v ) {
-					if ( false !== strpos( $v, '[disabled]' ) ) {
+					if ( $this->_is_component_disabled( $v ) ) {
 						$disabled[] = str_replace( '[disabled]', '', $v );
 					}
 				}

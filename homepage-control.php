@@ -94,11 +94,11 @@ final class Homepage_Control {
 		$this->version 			= '2.0.0';
 		$this->hook 			= (string)apply_filters( 'homepage_control_hook', 'homepage' );
 
+		//add_action( 'plugins_loaded', array( $this, 'maybe_migrate_data' ) );
+
 		register_activation_hook( __FILE__, array( $this, 'install' ) );
 
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
-
-		add_action( 'plugins_loaded', array( $this, 'maybe_migrate_data' ) );
 
 		/* Setup Customizer. */
 		require_once( 'classes/class-homepage-control-customizer.php' );
@@ -160,6 +160,7 @@ final class Homepage_Control {
 	 * @return  void
 	 */
 	public function install () {
+		$this->maybe_migrate_data();
 		$this->_log_version_number();
 	} // End install()
 
@@ -171,9 +172,8 @@ final class Homepage_Control {
 	 */
 	private function _log_version_number () {
 		// Log the version number.
-		update_option( $this->_token . '_version', $this->_version );
+		update_option( $this->token . '_version', $this->version );
 	} // End _log_version_number()
-
 
 	/**
 	 * Migrate data from versions prior to 2.0.0.
@@ -182,8 +182,13 @@ final class Homepage_Control {
 	 * @return  void
 	 */
 	public function maybe_migrate_data () {
-		if ( ! get_theme_mod( 'homepage_control_migrated' ) ) {
-			$options = (array)get_theme_mod( 'homepage_control' );
+		$options = get_theme_mod( 'homepage_control' );
+
+		if ( ! isset( $options ) ) {
+			return; // Option is empty, probably first time installing the plugin.
+		}
+
+		if ( is_array( $options ) ) {
 			$order = '';
 			$disabled = '';
 			$components = array();
@@ -210,9 +215,6 @@ final class Homepage_Control {
 
 			// Replace old data
 			set_theme_mod( 'homepage_control', $components );
-
-			// Setup a flag
-			set_theme_mod( 'homepage_control_migrated', true );
 		}
 	} // End maybe_migrate_data()
 
