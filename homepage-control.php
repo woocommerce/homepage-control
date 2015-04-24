@@ -94,7 +94,7 @@ final class Homepage_Control {
 		$this->version 			= '2.0.0';
 		$this->hook 			= (string)apply_filters( 'homepage_control_hook', 'homepage' );
 
-		//add_action( 'plugins_loaded', array( $this, 'maybe_migrate_data' ) );
+		add_action( 'plugins_loaded', array( $this, 'maybe_migrate_data' ) );
 
 		register_activation_hook( __FILE__, array( $this, 'install' ) );
 
@@ -160,7 +160,6 @@ final class Homepage_Control {
 	 * @return  void
 	 */
 	public function install () {
-		$this->maybe_migrate_data();
 		$this->_log_version_number();
 	} // End install()
 
