@@ -21,36 +21,37 @@ class Homepage_Control_Customizer_Control extends WP_Customize_Control {
 	 */
 	public function render_content() {
 		if ( ! is_array( $this->choices ) || ! count( $this->choices ) ) {
-			return;
-		}
-		$components         = $this->choices;
-		$order              = $this->value();
-		$disabled			= $this->_get_disabled_components( $this->value() );
-		?>
-		<label>
-			<?php
-				if ( ! empty( $this->label ) ) : ?>
-					<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-				<?php endif;
-				if ( ! empty( $this->description ) ) : ?>
-					<span class="description customize-control-description"><?php echo $this->description ; ?></span>
-				<?php endif;
+			printf( __( 'No homepage components found. See the %sdocs%s for details of available homepage component plugins/themes.', 'homepage-control' ), '<a href="' . esc_url( 'http://docs.woothemes.com/document/homepage-control/' ) . '">', '</a>' );
+		} else {
+			$components         = $this->choices;
+			$order              = $this->value();
+			$disabled			= $this->_get_disabled_components( $this->value() );
 			?>
-			<ul class="homepage-control">
-				<?php $components = $this->_reorder_components( $components, $order ); ?>
-				<?php foreach ( $components as $k => $v ) : ?>
-					<?php
-						$class = '';
-						if ( in_array( $k, $disabled ) ) {
-							$class = 'disabled';
-						}
-					?>
-					<li id="<?php echo esc_attr( $k ); ?>" class="<?php echo $class; ?>"><span class="visibility"></span><?php echo esc_attr( $v ); ?></li>
-				<?php endforeach; ?>
-			</ul>
-			<input type="hidden" <?php $this->link(); ?> value="<?php echo esc_attr( $this->value() ); ?>"/>
-		</label>
-		<?php
+			<label>
+				<?php
+					if ( ! empty( $this->label ) ) : ?>
+						<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+					<?php endif;
+					if ( ! empty( $this->description ) ) : ?>
+						<span class="description customize-control-description"><?php echo $this->description ; ?></span>
+					<?php endif;
+				?>
+				<ul class="homepage-control">
+					<?php $components = $this->_reorder_components( $components, $order ); ?>
+					<?php foreach ( $components as $k => $v ) : ?>
+						<?php
+							$class = '';
+							if ( in_array( $k, $disabled ) ) {
+								$class = 'disabled';
+							}
+						?>
+						<li id="<?php echo esc_attr( $k ); ?>" class="<?php echo $class; ?>"><span class="visibility"></span><?php echo esc_attr( $v ); ?></li>
+					<?php endforeach; ?>
+				</ul>
+				<input type="hidden" <?php $this->link(); ?> value="<?php echo esc_attr( $this->value() ); ?>"/>
+			</label>
+			<?php
+		}
 	}
 
 	/**
