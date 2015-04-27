@@ -246,7 +246,9 @@ final class Homepage_Control {
 							add_action( $this->hook, array( $obj_v[0], $obj_v[1] ), $count );
 						} // End If Statement
 					} else {
-						add_action( $this->hook, esc_attr( $v ), $count );
+						if ( function_exists( $v ) ) {
+							add_action( $this->hook, esc_attr( $v ), $count );
+						}
 					} // End If Statement
 
 					$count + 5;
