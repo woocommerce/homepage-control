@@ -141,7 +141,11 @@ class Homepage_Control_Customizer {
 		$defaults = array();
 
 		foreach ( $components as $k => $v ) {
-			$defaults[] = $k;
+			if ( apply_filters( 'homepage_control_hide_' . $k, false ) ) {
+				$defaults[] = '[disabled]' . $k;
+			} else {
+				$defaults[] = $k;
+			}
 		}
 
 		return join( ',', $defaults );

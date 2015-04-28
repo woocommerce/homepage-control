@@ -31,7 +31,7 @@ Installing "Homepage Control" can be done either by searching for "Homepage Cont
 1. Download the plugin via WordPress.org.
 1. Upload the ZIP file through the "Plugins > Add New > Upload" screen in your WordPress dashboard.
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Visit the "WooThemes > Homepage" (or "Appearance > Homepage") section and select which components you'd like to display, and in which order.
+1. Visit the "Appearance > Customizer" section, select "Homepage Control". There you can select the components you'd like to display, and in which order.
 
 == Frequently Asked Questions ==
 
@@ -61,6 +61,10 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 * Initial release. Woo!
 
 == Changelog ==
+
+= 2.0.0 =
+* 2015-04-28
+* Removed custom admin page and moved Homepage Control to the WordPress Customizer in Appearance > Customizer.
 
 = 1.0.1 =
 * 2014-11-21
