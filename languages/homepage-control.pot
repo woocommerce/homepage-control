@@ -1,43 +1,30 @@
-# Copyright (C) 2014 Homepage Control
+# Copyright (C) 2015 Homepage Control
 # This file is distributed under the same license as the Homepage Control package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Homepage Control 1.0.0\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/homepage-control\n"
-"POT-Creation-Date: 2014-03-18 11:52:28+00:00\n"
+"Project-Id-Version: Homepage Control 2.0.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/homepage-control\n"
+"POT-Creation-Date: 2015-04-30 14:54:39+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: classes/class-homepage-control-admin.php:44
-#: classes/class-homepage-control-admin.php:60
-msgid "Homepage"
+#: classes/class-homepage-control-customizer-control.php:24
+msgid "No homepage components found. See the %sdocs%s for details of available homepage component plugins/themes."
 msgstr ""
 
-#: classes/class-homepage-control-admin.php:65
-msgid "Save Changes"
+#: classes/class-homepage-control-customizer.php:26
+msgid "Homepage Control"
 msgstr ""
 
-#: classes/class-homepage-control-admin.php:80
-msgid "Homepage Components"
-msgstr ""
-
-#: classes/class-homepage-control-admin.php:109
+#: classes/class-homepage-control-customizer.php:41
 msgid "Re-order the homepage components in %s."
 msgstr ""
 
-#: classes/class-homepage-control-admin.php:115
-msgid "Component"
-msgstr ""
-
-#: classes/class-homepage-control-admin.php:137
-msgid "Your theme doesn't include any homepage components which are suitable for re-ordering or disabling. %sView documentation%s on what makes a theme compatible."
-msgstr ""
-
-#: homepage-control.php:145 homepage-control.php:154
+#: homepage-control.php:144 homepage-control.php:153
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 #. Plugin Name of the plugin/theme

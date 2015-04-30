@@ -18,7 +18,7 @@ Looking for a helping hand? [View plugin documentation](http://docs.woothemes.co
 
 == Usage ==
 
-Once activated, a "Homepage" menu item will display underneath the WooThemes administration menu. If you're not using a WooThemes theme, this menu will display under the "Appearance" menu item.
+Once activated, a "Homepage Control" item will display in the Theme Customizer ( Appearance > Customizer ).
 
 Visiting this screen will display a table of the possible homepage components, with options for re-ordering them, or disabling individual components.
 
