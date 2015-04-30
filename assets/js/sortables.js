@@ -1,28 +1,41 @@
-jQuery( document ).ready( function ( e ) {
-	jQuery( '.homepage-control-wrap tbody' ).sortable();
-	jQuery( '.homepage-control-wrap tbody' ).disableSelection();
+jQuery(document).ready(function($) {
+	"use strict";
+	$( '.homepage-control' ).sortable();
+	$( '.homepage-control' ).disableSelection();
 
-	jQuery( '.homepage-control-wrap tbody' ).bind( 'sortstop', function ( e, ui ) {
-		var orderString = '';
+	$( '.homepage-control' ).bind( 'sortstop', function ( e, ui ) {
+		var components = new Array();
+		var disabled = '[disabled]';
 
-		jQuery( e.target ).find( 'tr' ).each( function ( i, e ) {
-			if ( i > 0 ) { orderString += ','; }
-			orderString += jQuery( this ).attr( 'id' );
+		$( e.target ).find( 'li' ).each( function ( i, e ) {
+			if ( $( this ).hasClass( 'disabled' ) ) {
+				components.push( disabled + $( this ).attr( 'id' ) );
+			} else {
+				components.push( $( this ).attr( 'id' ) );
+			}
 		});
 
-		jQuery( 'input[id="component_order"]' ).attr( 'value', orderString );
+		components = components.join( ',' );
+
+		$( 'input[data-customize-setting-link="homepage_control"]' ).attr( 'value', components ).trigger( 'change' );
 	});
 
-	jQuery( '.homepage-control-wrap .visibility' ).bind( 'click', function ( e ) {
-		var disabledString = '';
+	$( '.homepage-control .visibility' ).bind( 'click', function ( e ) {
+		var components = new Array();
+		var disabled = '[disabled]';
 
-		jQuery( this ).parents( 'tr.item-row' ).toggleClass( 'disabled' );
+		$( this ).parent( 'li' ).toggleClass( 'disabled' );
 
-		jQuery( this ).parents( '.homepage-control-wrap' ).find( 'tr.disabled' ).each( function ( i, e ) {
-			if ( i > 0 ) { disabledString += ','; }
-			disabledString += jQuery( this ).attr( 'id' );
+		$( this ).parents( '.homepage-control' ).find( 'li' ).each( function ( i, e ) {
+			if ( $( this ).hasClass( 'disabled' ) ) {
+				components.push( disabled + $( this ).attr( 'id' ) );
+			} else {
+				components.push( $( this ).attr( 'id' ) );
+			}
 		});
 
-		jQuery( 'input[id="disabled_components"]' ).attr( 'value', disabledString );
+		components = components.join( ',' );
+
+		$( 'input[data-customize-setting-link="homepage_control"]' ).attr( 'value', components ).trigger( 'change' );
 	});
 });

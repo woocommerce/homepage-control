@@ -3,7 +3,7 @@
  * Plugin Name: Homepage Control
  * Plugin URI: http://www.woothemes.com/products/homepage-control/
  * Description: Hi! I'm here to assist you with re-ordering or disabling components of your theme's homepage design.
- * Version: 1.0.1
+ * Version: 2.0.0
  * Author: WooThemes
  * Author URI: http://woothemes.com/
  * Requires at least: 3.8.1
@@ -91,21 +91,20 @@ final class Homepage_Control {
 		$this->token 			= 'homepage-control';
 		$this->plugin_url 		= plugin_dir_url( __FILE__ );
 		$this->plugin_path 		= plugin_dir_path( __FILE__ );
-		$this->version 			= '1.0.0';
+		$this->version 			= '2.0.0';
 		$this->hook 			= (string)apply_filters( 'homepage_control_hook', 'homepage' );
+
+		add_action( 'plugins_loaded', array( $this, 'maybe_migrate_data' ) );
 
 		register_activation_hook( __FILE__, array( $this, 'install' ) );
 
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 
-		add_filter( 'pre_option_homepage_control', array( $this, 'force_theme_mod_get' ), 10 );
-		add_filter( 'pre_update_option_homepage_control', array( $this, 'force_theme_mod_set' ), 10, 2 );
+		/* Setup Customizer. */
+		require_once( 'classes/class-homepage-control-customizer.php' );
 
-		/* Conditionally load the admin. */
-		if ( is_admin() ) {
-			require_once( 'classes/class-homepage-control-admin.php' );
-			$this->admin = new Homepage_Control_Admin();
-		} else {
+		/* Reorder Components. */
+		if ( ! is_admin() ) {
 			add_action( 'get_header', array( $this, 'maybe_apply_restructuring_filter' ) );
 		}
 	} // End __construct()
@@ -172,32 +171,51 @@ final class Homepage_Control {
 	 */
 	private function _log_version_number () {
 		// Log the version number.
-		update_option( $this->_token . '_version', $this->_version );
+		update_option( $this->token . '_version', $this->version );
 	} // End _log_version_number()
 
 	/**
-	 * Bypass any options checks and use get_theme_mod() instead.
+	 * Migrate data from versions prior to 2.0.0.
 	 * @access  public
-	 * @since   1.0.0
-	 * @param   boolean $value This value is false by default, on the pre_option_ filters.
-	 * @return  mixed
+	 * @since   2.0.0
+	 * @return  void
 	 */
-	public function force_theme_mod_get ( $value ) {
-		return get_theme_mod( 'homepage_control' );
-	} // End force_theme_mod_get()
+	public function maybe_migrate_data () {
+		$options = get_theme_mod( 'homepage_control' );
 
-	/**
-	 * Bypass any options checks and use get_theme_mod() instead.
-	 * @access  public
-	 * @since   1.0.0
-	 * @param   mixed $value
-	 * @param   mixed $old_value
-	 * @return  mixed
-	 */
-	public function force_theme_mod_set ( $value, $old_value ) {
-		set_theme_mod( 'homepage_control', $value );
-		return $old_value; // We return the $old_value so the rest of update_option() doesn't run.
-	} // End force_theme_mod_set()
+		if ( ! isset( $options ) ) {
+			return; // Option is empty, probably first time installing the plugin.
+		}
+
+		if ( is_array( $options ) ) {
+			$order = '';
+			$disabled = '';
+			$components = array();
+
+			if ( isset( $options['component_order'] ) ) {
+				$order = explode( ',', $options['component_order'] );
+
+				if ( isset( $options['disabled_components'] ) ) {
+					$disabled = explode( ',', $options['disabled_components'] );
+				}
+
+				if ( 0 < count( $order ) ) {
+					foreach ( $order as $k => $v ) {
+						if ( in_array( $v, $disabled ) ) {
+							$components[] = '[disabled]' . $v; // Add disabled tag
+						} else {
+							$components[] = $v;
+						}
+					}
+				}
+			}
+
+			$components = join( ',', $components );
+
+			// Replace old data
+			set_theme_mod( 'homepage_control', $components );
+		}
+	} // End maybe_migrate_data()
 
 	/**
 	 * Work through the stored data and display the components in the desired order, without the disabled components.
@@ -206,25 +224,17 @@ final class Homepage_Control {
 	 * @return  void
 	 */
 	public function maybe_apply_restructuring_filter () {
-		$options = (array)get_theme_mod( 'homepage_control' );
-		$order = '';
-		$disabled = '';
+		$options = get_theme_mod( 'homepage_control' );
 		$components = array();
 
-		if ( isset( $options['component_order'] ) ) {
-			$order = $options['component_order'];
-
-			if ( isset( $options['disabled_components'] ) ) {
-				$disabled = $options['disabled_components'];
-			}
-
-			// Attempt to remove disabled components.
-			if ( '' != $order ) {
-				$components = $this->_maybe_remove_disabled_items( $order, $disabled );
-			}
+		if ( isset( $options ) && '' != $options ) {
+			$components = explode( ',', $options );
 
 			// Remove all existing actions on woo_homepage.
 			remove_all_actions( $this->hook );
+
+			// Remove disabled components
+			$components = $this->_maybe_remove_disabled_items( $components );
 
 			// Perform the reordering!
 			if ( 0 < count( $components ) ) {
@@ -236,7 +246,9 @@ final class Homepage_Control {
 							add_action( $this->hook, array( $obj_v[0], $obj_v[1] ), $count );
 						} // End If Statement
 					} else {
-						add_action( $this->hook, esc_attr( $v ), $count );
+						if ( function_exists( $v ) ) {
+							add_action( $this->hook, esc_attr( $v ), $count );
+						}
 					} // End If Statement
 
 					$count + 5;
@@ -249,25 +261,18 @@ final class Homepage_Control {
 	 * Maybe remove disabled items from the main ordered array.
 	 * @access  private
 	 * @since   1.0.0
-	 * @param   string $order    Stored comma separated data for the components order.
-	 * @param   string $disabled Stored comma separated data for the disabled components.
-	 * @return  array            Re-ordered components with disabled components removed.
+	 * @param   array $components 	Array with components order.
+	 * @return  array           	Re-ordered components with disabled components removed.
 	 */
-	private function _maybe_remove_disabled_items ( $order, $disabled ) {
-		// Transform into arrays.
-		$order = explode( ',', $order );
-		$disabled = explode( ',', $disabled );
-
-		// Remove disabled items from the ordered array.
-		if ( 0 < count( $order ) && 0 < count( $disabled ) ) {
-			foreach ( $order as $k => $v ) {
-				if ( in_array( $v, $disabled ) ) {
-					unset( $order[$k] );
+	private function _maybe_remove_disabled_items( $components ) {
+		if ( 0 < count( $components ) ) {
+			foreach ( $components as $k => $v ) {
+				if ( false !== strpos( $v, '[disabled]' ) ) {
+					unset( $components[ $k ] );
 				}
 			}
 		}
-
-		return $order;
+		return $components;
 	} // End _maybe_remove_disabled_items()
 } // End Class
 ?>

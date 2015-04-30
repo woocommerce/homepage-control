@@ -1,10 +1,10 @@
 === Homepage Control ===
-Contributors: woothemes,mattyza,jameskoster
+Contributors: woothemes,mattyza,jameskoster,tiagonoronha
 Donate link: http://woothemes.com/
 Tags: homepage, hooks, theme-mod, components
 Requires at least: 3.8.1
 Tested up to: 3.8.1
-Stable tag: 1.0.1
+Stable tag: 2.0.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -18,7 +18,7 @@ Looking for a helping hand? [View plugin documentation](http://docs.woothemes.co
 
 == Usage ==
 
-Once activated, a "Homepage" menu item will display underneath the WooThemes administration menu. If you're not using a WooThemes theme, this menu will display under the "Appearance" menu item.
+Once activated, a "Homepage Control" item will display in the Theme Customizer ( Appearance > Customizer ).
 
 Visiting this screen will display a table of the possible homepage components, with options for re-ordering them, or disabling individual components.
 
@@ -31,7 +31,7 @@ Installing "Homepage Control" can be done either by searching for "Homepage Cont
 1. Download the plugin via WordPress.org.
 1. Upload the ZIP file through the "Plugins > Add New > Upload" screen in your WordPress dashboard.
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Visit the "WooThemes > Homepage" (or "Appearance > Homepage") section and select which components you'd like to display, and in which order.
+1. Visit the "Appearance > Customizer" section, select "Homepage Control". There you can select the components you'd like to display, and in which order.
 
 == Frequently Asked Questions ==
 
@@ -61,6 +61,10 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 * Initial release. Woo!
 
 == Changelog ==
+
+= 2.0.0 =
+* 2015-04-28
+* Removed custom admin page and moved Homepage Control to the WordPress Customizer in Appearance > Customizer.
 
 = 1.0.1 =
 * 2014-11-21
