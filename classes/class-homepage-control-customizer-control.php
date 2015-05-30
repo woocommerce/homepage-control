@@ -38,17 +38,29 @@ class Homepage_Control_Customizer_Control extends WP_Customize_Control {
 				?>
 				<ul class="homepage-control">
 					<?php $components = $this->_reorder_components( $components, $order ); ?>
-					<?php foreach ( $components as $k => $v ) : ?>
+					<?php foreach ( $components as $id => $title ) : ?>
 						<?php
-							if ( ! function_exists( $k ) ) {
-								continue;
-							}
 							$class = '';
-							if ( in_array( $k, $disabled ) ) {
+							if ( in_array( $id, $disabled ) ) {
 								$class = 'disabled';
 							}
+
+							/**
+							 * Filter the control title.
+							 *
+							 * @since 2.0.1
+							 *
+							 * @param string $title The control title.
+							 * @param string $id The action hook function ID.
+							 */
+							$title = apply_filters( 'homepage_control_title', $title, $id );
+
+							// Nothing to display.
+							if ( empty( $title ) ) {
+								continue;
+							}
 						?>
-						<li id="<?php echo esc_attr( $k ); ?>" class="<?php echo $class; ?>"><span class="visibility"></span><?php echo esc_attr( $v ); ?></li>
+						<li id="<?php echo esc_attr( $id ); ?>" class="<?php echo $class; ?>"><span class="visibility"></span><?php echo esc_attr( $title ); ?></li>
 					<?php endforeach; ?>
 				</ul>
 				<input type="hidden" <?php $this->link(); ?> value="<?php echo esc_attr( $this->value() ); ?>"/>
