@@ -40,6 +40,9 @@ class Homepage_Control_Customizer_Control extends WP_Customize_Control {
 					<?php $components = $this->_reorder_components( $components, $order ); ?>
 					<?php foreach ( $components as $k => $v ) : ?>
 						<?php
+							if ( ! function_exists( $k ) ) {
+								continue;
+							}
 							$class = '';
 							if ( in_array( $k, $disabled ) ) {
 								$class = 'disabled';
