@@ -65,6 +65,7 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 = 2.0.1 =
 * 2015-06-01
 * Make sure only components that actually exist are outputted to the customizer control (props valendesigns).
+* Hide by default components added after the initial setup.
 
 = 2.0.0 =
 * 2015-04-28

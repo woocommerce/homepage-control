@@ -25,7 +25,7 @@ class Homepage_Control_Customizer_Control extends WP_Customize_Control {
 		} else {
 			$components         = $this->choices;
 			$order              = $this->value();
-			$disabled			= $this->_get_disabled_components( $this->value() );
+			$disabled			= $this->_get_disabled_components( $this->value(), $components );
 			?>
 			<label>
 				<?php
@@ -123,16 +123,25 @@ class Homepage_Control_Customizer_Control extends WP_Customize_Control {
 	 * @since   2.0.0
 	 * @return  array An array of disabled components.
 	 */
-	private function _get_disabled_components ( $components ) {
+	private function _get_disabled_components ( $saved_components, $all_components ) {
 		$disabled = array();
-		if ( '' != $components ) {
-			$components = explode( ',', $components );
+		if ( '' != $saved_components ) {
+			$saved_components = explode( ',', $saved_components );
 
-			if ( 0 < count( $components ) ) {
-				foreach ( $components as $k => $v ) {
+			if ( 0 < count( $saved_components ) ) {
+				foreach ( $saved_components as $k => $v ) {
 					if ( $this->_is_component_disabled( $v ) ) {
-						$disabled[] = str_replace( '[disabled]', '', $v );
+						$v = str_replace( '[disabled]', '', $v );
+						$disabled[] = $v;
 					}
+					unset( $all_components[ $v ] );
+				}
+			}
+
+			// Disable new components
+			if ( 0 < count( $all_components ) ) {
+				foreach ( $all_components as $k => $v ) {
+					$disabled[] = $k;
 				}
 			}
 		}
