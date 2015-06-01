@@ -89,8 +89,12 @@ class Homepage_Control_Customizer_Control extends WP_Customize_Control {
 				if ( $this->_is_component_disabled( $v ) ) {
 					$v = str_replace( '[disabled]', '', $v );
 				}
-				$components[ $v ] = $original_components[ $v ];
-				unset( $original_components[ $v ] );
+
+				// Only add to array if component still exists
+				if ( isset( $original_components[ $v ] ) ) {
+					$components[ $v ] = $original_components[ $v ];
+					unset( $original_components[ $v ] );
+				}
 			}
 			if ( 0 < count( $original_components ) ) {
 				$components = array_merge( $components, $original_components );
