@@ -64,7 +64,7 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 
 = 2.0.1 =
 * 2015-06-01
-* Fixed a small issue that caused a PHP notice when a component is removed (props valendesigns).
+* Make sure only components that actually exist are outputted to the customizer control (props valendesigns).
 
 = 2.0.0 =
 * 2015-04-28
