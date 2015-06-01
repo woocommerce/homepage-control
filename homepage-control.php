@@ -3,7 +3,7 @@
  * Plugin Name: Homepage Control
  * Plugin URI: http://www.woothemes.com/products/homepage-control/
  * Description: Hi! I'm here to assist you with re-ordering or disabling components of your theme's homepage design.
- * Version: 2.0.0
+ * Version: 2.0.1
  * Author: WooThemes
  * Author URI: http://woothemes.com/
  * Requires at least: 3.8.1

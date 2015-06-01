@@ -4,7 +4,7 @@ Donate link: http://woothemes.com/
 Tags: homepage, hooks, theme-mod, components, customizer
 Requires at least: 3.8.1
 Tested up to: 4.2.1
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -61,6 +61,10 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 * Initial release. Woo!
 
 == Changelog ==
+
+= 2.0.1 =
+* 2015-06-01
+* Fixed a small issue that caused a PHP notice when a component is removed (props valendesigns).
 
 = 2.0.0 =
 * 2015-04-28
