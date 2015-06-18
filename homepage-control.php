@@ -91,7 +91,7 @@ final class Homepage_Control {
 		$this->token 			= 'homepage-control';
 		$this->plugin_url 		= plugin_dir_url( __FILE__ );
 		$this->plugin_path 		= plugin_dir_path( __FILE__ );
-		$this->version 			= '2.0.0';
+		$this->version 			= '2.0.1';
 		$this->hook 			= (string)apply_filters( 'homepage_control_hook', 'homepage' );
 
 		add_action( 'plugins_loaded', array( $this, 'maybe_migrate_data' ) );
