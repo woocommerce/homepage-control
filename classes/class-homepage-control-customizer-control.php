@@ -21,7 +21,7 @@ class Homepage_Control_Customizer_Control extends WP_Customize_Control {
 	 */
 	public function render_content() {
 		if ( ! is_array( $this->choices ) || ! count( $this->choices ) ) {
-			printf( __( 'No homepage components found. See the %sdocs%s for details of available homepage component plugins/themes.', 'homepage-control' ), '<a href="' . esc_url( 'http://docs.woothemes.com/document/homepage-control/' ) . '">', '</a>' );
+			printf( __( 'No homepage components found. Please contact your theme author to make your theme compatible with Homepage Control or see this %sguide%s for details on how to do this yourself.', 'homepage-control' ), '<a href="' . esc_url( 'https://docs.woocommerce.com/document/make-your-theme-compatible-with-homepage-control/' ) . '">', '</a>' );
 		} else {
 			$components         = $this->choices;
 			$order              = $this->value();
