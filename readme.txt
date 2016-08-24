@@ -3,8 +3,8 @@ Contributors: woothemes,mattyza,jameskoster,tiagonoronha
 Donate link: http://woothemes.com/
 Tags: homepage, hooks, theme-mod, components, customizer
 Requires at least: 3.8.1
-Tested up to: 4.6
-Stable tag: 2.0.1
+Tested up to: 4.6.0
+Stable tag: 2.0.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -56,11 +56,19 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 
 == Upgrade Notice ==
 
+= 2.0.2 =
+* 2016-08-24
+* Minor tweaks to customizer control.
+
 = 1.0.0 =
 * 2014-03-18
 * Initial release. Woo!
 
 == Changelog ==
+
+= 2.0.2 =
+* 2016-08-24
+* Minor tweaks to customizer control.
 
 = 2.0.1 =
 * 2015-06-01
