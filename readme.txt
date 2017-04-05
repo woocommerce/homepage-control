@@ -3,7 +3,7 @@ Contributors: woothemes,mattyza,jameskoster,tiagonoronha,jeffikus
 Donate link: http://woothemes.com/
 Tags: homepage, hooks, theme-mod, components, customizer
 Requires at least: 3.8.1
-Tested up to: 4.6.0
+Tested up to: 4.7.3
 Stable tag: 2.0.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -14,7 +14,7 @@ Re-order or disable the homepage components in certain themes.
 
 Using Homepage Control, any theme which uses a "homepage" (or other) hook to display components on a homepage, just got better. Re-order or disable any of the homepage components added by your theme, and control the display and order of any function hooked on to the "homepage" hook.
 
-Looking for a helping hand? [View plugin documentation](http://docs.woothemes.com/document/homepage-control/).
+Looking for a helping hand? [View plugin documentation](https://docs.woocommerce.com/document/homepage-control/).
 
 == Usage ==
 
@@ -35,9 +35,13 @@ Installing "Homepage Control" can be done either by searching for "Homepage Cont
 
 == Frequently Asked Questions ==
 
+= What theme would be best to use this on? =
+
+While not all themes use the "homepage" action hook, [Storefront by WooCommerce](https://woocommerce.com/storefront/) does!   
+
 = No components show up in the administration area. Is my theme broken? =
 
-Not at all. This simply means your theme doesn't support the "homepage" action hook, which is a method of adding components to a homepage design.
+Not at all. This simply means your theme doesn't support the "homepage" action hook, which is a method of adding components to a homepage design. [Storefront by WooCommerce](https://woocommerce.com/storefront/) supports the "homepage" action hook. We would recommend using a [WooCommerce compatible theme](https://woocommerce.com/storefront/) to ensure that this plugin works correctly.
 
 Please consult your theme developer if you have further queries about customising your homepage.
 
