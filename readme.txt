@@ -1,9 +1,9 @@
 === Homepage Control ===
 Contributors: woothemes,mattyza,jameskoster,tiagonoronha,jeffikus
-Donate link: http://woothemes.com/
-Tags: homepage, hooks, theme-mod, components, customizer
+Donate link: https://woocommerce.com/storefront/
+Tags: woocommerce, storefront, homepage, hooks, theme-mod, components, customizer
 Requires at least: 3.8.1
-Tested up to: 4.6.0
+Tested up to: 5.0.0
 Stable tag: 2.0.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -14,7 +14,7 @@ Re-order or disable the homepage components in certain themes.
 
 Using Homepage Control, any theme which uses a "homepage" (or other) hook to display components on a homepage, just got better. Re-order or disable any of the homepage components added by your theme, and control the display and order of any function hooked on to the "homepage" hook.
 
-Looking for a helping hand? [View plugin documentation](http://docs.woothemes.com/document/homepage-control/).
+Looking for a helping hand? [View plugin documentation](https://docs.woocommerce.com/document/homepage-control/).
 
 == Usage ==
 
