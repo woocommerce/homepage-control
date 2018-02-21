@@ -1,10 +1,10 @@
 === Homepage Control ===
-Contributors: woothemes,mattyza,jameskoster,tiagonoronha,jeffikus
-Donate link: http://woothemes.com/
+Contributors: woothemes,mattyza,jameskoster,tiagonoronha,jeffikus,danieldudzic
+Donate link: http://woocommerce.com/
 Tags: homepage, hooks, theme-mod, components, customizer
 Requires at least: 3.8.1
-Tested up to: 4.6.0
-Stable tag: 2.0.2
+Tested up to: 4.9.4
+Stable tag: 2.0.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -14,7 +14,7 @@ Re-order or disable the homepage components in certain themes.
 
 Using Homepage Control, any theme which uses a "homepage" (or other) hook to display components on a homepage, just got better. Re-order or disable any of the homepage components added by your theme, and control the display and order of any function hooked on to the "homepage" hook.
 
-Looking for a helping hand? [View plugin documentation](http://docs.woothemes.com/document/homepage-control/).
+Looking for a helping hand? [View plugin documentation](http://docs.woocommerce.com/document/homepage-control/).
 
 == Usage ==
 
@@ -47,7 +47,7 @@ Not at all. :) If you switch themes, Homepage Control will remember the homepage
 
 = How do I contribute? =
 
-We encourage everyone to contribute their ideas, thoughts and code snippets. This can be done by forking the [repository over at GitHub](http://github.com/woothemes/homepage-control/).
+We encourage everyone to contribute their ideas, thoughts and code snippets. This can be done by forking the [repository over at GitHub](http://github.com/woocommerce/homepage-control/).
 
 == Screenshots ==
 
@@ -55,6 +55,10 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 
 
 == Upgrade Notice ==
+
+= 2.0.3 =
+* 2018-02-21
+* PHP 7 fix for count() usage on arrays.
 
 = 2.0.2 =
 * 2016-08-24
@@ -65,6 +69,10 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 * Initial release. Woo!
 
 == Changelog ==
+
+= 2.0.3 =
+* 2018-02-21
+* PHP 7 fix for count() usage on arrays.
 
 = 2.0.2 =
 * 2016-08-24

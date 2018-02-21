@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name: Homepage Control
- * Plugin URI: http://www.woothemes.com/products/homepage-control/
+ * Plugin URI: http://www.woocommerce.com/products/homepage-control/
  * Description: Hi! I'm here to assist you with re-ordering or disabling components of your theme's homepage design.
- * Version: 2.0.2
+ * Version: 2.0.3
  * Author: WooThemes
- * Author URI: http://woothemes.com/
+ * Author URI: http://woocommerce.com/
  * Requires at least: 3.8.1
- * Tested up to: 4.6.0
+ * Tested up to: 4.9.4
  *
  * Text Domain: homepage-control
  * Domain Path: /languages/
@@ -91,7 +91,7 @@ final class Homepage_Control {
 		$this->token 			= 'homepage-control';
 		$this->plugin_url 		= plugin_dir_url( __FILE__ );
 		$this->plugin_path 		= plugin_dir_path( __FILE__ );
-		$this->version 			= '2.0.2';
+		$this->version 			= '2.0.3';
 		$this->hook 			= (string)apply_filters( 'homepage_control_hook', 'homepage' );
 
 		add_action( 'plugins_loaded', array( $this, 'maybe_migrate_data' ) );

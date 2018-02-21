@@ -95,7 +95,7 @@ class Homepage_Control_Customizer {
 
 		$response = array();
 
-		if ( isset( $wp_filter[Homepage_Control()->hook] ) && 0 < count( $wp_filter[Homepage_Control()->hook] ) ) {
+		if ( isset( $wp_filter[Homepage_Control()->hook] ) && 0 < iterator_count( $wp_filter[Homepage_Control()->hook] ) ) {
 			foreach ( $wp_filter[Homepage_Control()->hook] as $k => $v ) {
 				if ( is_array( $v ) ) {
 					foreach ( $v as $i => $j ) {
