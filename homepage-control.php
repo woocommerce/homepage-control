@@ -241,15 +241,12 @@ final class Homepage_Control {
 				$count = 5;
 				foreach ( $components as $k => $v ) {
 					if (strpos( $v, '@' ) !== FALSE) {
-						$obj_v = explode( '@' , $v );
-						if ( class_exists( $obj_v[0] ) && method_exists( $obj_v[0], $obj_v[1] ) ) {
-							add_action( $this->hook, array( $obj_v[0], $obj_v[1] ), $count );
-						} // End If Statement
-					} else {
-						if ( function_exists( $v ) ) {
-							add_action( $this->hook, esc_attr( $v ), $count );
-						}
-					} // End If Statement
+						$v = explode( '@' , $v );
+					}
+
+					if ( is_callable($v) ) {
+						add_action( $this->hook, $v, $count );
+					}
 
 					$count + 5;
 				}
