@@ -1,10 +1,9 @@
 === Homepage Control ===
-Contributors: woothemes,mattyza,jameskoster,tiagonoronha,jeffikus,danieldudzic
-Donate link: http://woocommerce.com/
+Contributors: woothemes,mattyza,jameskoster,tiagonoronha,jeffikus,danieldudzic,dougaitken
 Tags: homepage, hooks, theme-mod, components, customizer
 Requires at least: 3.8.1
-Tested up to: 4.9.4
-Stable tag: 2.0.3
+Tested up to: 5.2.0
+Stable tag: 2.0.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -14,7 +13,7 @@ Re-order or disable the homepage components in certain themes.
 
 Using Homepage Control, any theme which uses a "homepage" (or other) hook to display components on a homepage, just got better. Re-order or disable any of the homepage components added by your theme, and control the display and order of any function hooked on to the "homepage" hook.
 
-Looking for a helping hand? [View plugin documentation](http://docs.woocommerce.com/document/homepage-control/).
+Looking for a helping hand? [View plugin documentation](https://docs.woocommerce.com/document/homepage-control/).
 
 == Usage ==
 
@@ -28,10 +27,10 @@ Once done, click the "Save Changes" button, to commit your new component order i
 
 Installing "Homepage Control" can be done either by searching for "Homepage Control" via the "Plugins > Add New" screen in your WordPress dashboard, or by using the following steps:
 
-1. Download the plugin via WordPress.org.
-1. Upload the ZIP file through the "Plugins > Add New > Upload" screen in your WordPress dashboard.
+1. Download the plugin via WordPress.org - `https://wordpress.org/plugins/homepage-control/`
+1. Upload the ZIP file through the "Plugins > Add New > Upload" screen in your WordPress dashboard
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Visit the "Appearance > Customizer" section, select "Homepage Control". There you can select the components you'd like to display, and in which order.
+1. Visit the "Appearance > Customizer" section, select "Homepage Control". There you can select the components you'd like to display, and in which order
 
 == Frequently Asked Questions ==
 
@@ -56,6 +55,10 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 
 == Upgrade Notice ==
 
+= 2.0.4 =
+* 2019-05-22
+* Tested up to: 5.2
+
 = 2.0.3 =
 * 2018-02-21
 * PHP 7 fix for count() usage on arrays.
@@ -69,6 +72,10 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 * Initial release. Woo!
 
 == Changelog ==
+
+= 2.0.4 =
+* 2019-05-22
+* Tested up to: 5.2
 
 = 2.0.3 =
 * 2018-02-21
