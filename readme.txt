@@ -1,9 +1,9 @@
 === Homepage Control ===
-Contributors: woothemes,mattyza,jameskoster,tiagonoronha,jeffikus,danieldudzic
-Donate link: http://woocommerce.com/
+Contributors: woocommerce,automattic,woothemes,mattyza,jameskoster,tiagonoronha,jeffikus,danieldudzic
+Donate link: https://woocommerce.com/
 Tags: homepage, hooks, theme-mod, components, customizer
 Requires at least: 3.8.1
-Tested up to: 4.9.4
+Tested up to: 5.2
 Stable tag: 2.0.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
