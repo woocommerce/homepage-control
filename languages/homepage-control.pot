@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Homepage Control 2.0.0\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/homepage-control\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/homepage-control\n"
 "POT-Creation-Date: 2015-04-30 14:54:39+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +32,7 @@ msgid "Homepage Control"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "http://www.woothemes.com/products/homepage-control/"
+msgid "https://wordpress.org/plugins/homepage-control/"
 msgstr ""
 
 #. Description of the plugin/theme
@@ -40,9 +40,9 @@ msgid "Hi! I'm here to assist you with re-ordering or disabling components of yo
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "WooThemes"
+msgid "WooCommerce"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "http://woothemes.com/"
+msgid "https://woocommerce.com/"
 msgstr ""

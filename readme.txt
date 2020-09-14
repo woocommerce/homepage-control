@@ -3,8 +3,8 @@ Contributors: woocommerce,automattic,woothemes,mattyza,jameskoster,tiagonoronha,
 Donate link: https://woocommerce.com/
 Tags: homepage, hooks, theme-mod, components, customizer
 Requires at least: 3.8.1
-Tested up to: 5.2
-Stable tag: 2.0.3
+Tested up to: 5.5
+Stable tag: 2.0.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -14,7 +14,7 @@ Re-order or disable the homepage components in certain themes.
 
 Using Homepage Control, any theme which uses a "homepage" (or other) hook to display components on a homepage, just got better. Re-order or disable any of the homepage components added by your theme, and control the display and order of any function hooked on to the "homepage" hook.
 
-Looking for a helping hand? [View plugin documentation](http://docs.woocommerce.com/document/homepage-control/).
+Looking for a helping hand? [View plugin documentation](https://docs.woocommerce.com/document/homepage-control/).
 
 == Usage ==
 
@@ -30,7 +30,7 @@ Installing "Homepage Control" can be done either by searching for "Homepage Cont
 
 1. Download the plugin via WordPress.org.
 1. Upload the ZIP file through the "Plugins > Add New > Upload" screen in your WordPress dashboard.
-1. Activate the plugin through the 'Plugins' menu in WordPress
+1. Activate the plugin
 1. Visit the "Appearance > Customizer" section, select "Homepage Control". There you can select the components you'd like to display, and in which order.
 
 == Frequently Asked Questions ==
@@ -69,6 +69,11 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 * Initial release. Woo!
 
 == Changelog ==
+
+= 2.0.4 =
+* 2020-09-14
+* Update readme and plugin copy.
+* Tested up to 5.5
 
 = 2.0.3 =
 * 2018-02-21

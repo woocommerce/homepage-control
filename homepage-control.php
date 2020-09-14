@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name: Homepage Control
- * Plugin URI: http://www.woocommerce.com/products/homepage-control/
+ * Plugin URI: https://wordpress.org/plugins/homepage-control/
  * Description: Hi! I'm here to assist you with re-ordering or disabling components of your theme's homepage design.
- * Version: 2.0.3
- * Author: WooThemes
- * Author URI: http://woocommerce.com/
+ * Version: 2.0.4
+ * Author: WooCommerce
+ * Author URI: https://woocommerce.com/
  * Requires at least: 3.8.1
- * Tested up to: 4.9.4
+ * Tested up to: 5.5
  *
  * Text Domain: homepage-control
  * Domain Path: /languages/
